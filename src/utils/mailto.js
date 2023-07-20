@@ -1,14 +1,17 @@
 const nodeMailer = require('nodemailer');
 
 async function sendEmail(recipient, subject, text, files) {
+	const { SMTP_HOST, SMTP_PORT, SMTP_AUTH_USER, SMTP_AUTH_PASSWORD } =
+		process.env;
+
 	try {
 		const transporter = nodeMailer.createTransport({
-			host: 'smtp.hostinger.com',
-			port: 465,
+			host: SMTP_HOST,
+			port: SMTP_PORT,
 			secure: true,
 			auth: {
-				user: 'patrick@wordpressbadass.com',
-				pass: 'Secret90,;:!',
+				user: SMTP_AUTH_USER,
+				pass: SMTP_AUTH_PASSWORD,
 			},
 		});
 
